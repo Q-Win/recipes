@@ -4,6 +4,10 @@
         <h1>Recipes</h1>
       </header>
 
+      <form class="new-recipe">
+        <input type="text" name="recipe" placeholder="Type to add new recipes" />
+      </form>
+
       <ul>
         {{#each recipes}}
           {{> recipe}}
