@@ -18,7 +18,7 @@ Recipes.attachSchema(new SimpleSchema({
     min: 1},
   username: {
     type: String,
-    min: 1}},  
+    min: 1}},
     { tracker: Tracker }))
 
 
@@ -34,12 +34,12 @@ if (Meteor.isServer) {
   });
 }
 
-SimpleSchema.defineValidationErrorTransform(error => {
-  const ddpError = new Meteor.Error(error.message);
-  ddpError.error = 'validation-error';
-  ddpError.details = error.details;
-  return ddpError;
-});
+// SimpleSchema.defineValidationErrorTransform(error => {
+//   const ddpError = new Meteor.Error(error.message);
+//   ddpError.error = 'validation-error';
+//   ddpError.details = error.details;
+//   return ddpError;
+// });
 
 // const myMethodObjArgSchema = new SimpleSchema({
 //   name: {

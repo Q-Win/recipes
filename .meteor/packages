@@ -23,4 +23,5 @@ reactive-dict
 accounts-ui
 accounts-password
 aldeed:autoform
-aldeed:collection2@3.0.0
+aldeed:collection2
+ongoworks:security
