@@ -1,3 +1,8 @@
+<template name="insertRecipeForm">
+  {{> quickForm collection="Recipes" id="insertRecipeForm" type="insert" doc=this}}
+</template>
+
+
 <template name="recipe">
     <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
       <button class="delete">&times;</button>
@@ -17,8 +22,4 @@
       <span class="text"><strong>{{name}}</strong> - by {{username}}</span>
       <p>{{instructions}}</p>
     </li>
-  </template>
-
-  <template name="insertRecipeForm">
-    {{> quickForm collection="Recipes" id="insertRecipeForm" type="insert"}}
   </template>
