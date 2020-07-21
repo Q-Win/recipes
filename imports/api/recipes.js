@@ -2,10 +2,17 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
+SimpleSchema.extendOptions(['autoform']);
 
 
 export const Recipes = new Mongo.Collection('recipes');
-
+Recipes.attachSchema(new SimpleSchema({
+  name: {
+    type: String,
+    min: 1},
+  instructions: {
+    type: String,
+    min: 5}},{ tracker: Tracker }))
 
 
 if (Meteor.isServer) {
@@ -27,22 +34,22 @@ SimpleSchema.defineValidationErrorTransform(error => {
   return ddpError;
 });
 
-const myMethodObjArgSchema = new SimpleSchema({
-  name: {
-    type: String,
-    min: 1},
-  instructions: {
-    type: String,
-    min: 1}
-  },
-  { check }
-);
+// const myMethodObjArgSchema = new SimpleSchema({
+//   name: {
+//     type: String,
+//     min: 1},
+//   instructions: {
+//     type: String,
+//     min: 1}
+//   },
+//   { check }
+// );
 
 Meteor.methods({
   'recipes.insert'(name, instructions) {
     check(name, String);
     check(instructions, String)
-    myMethodObjArgSchema.validate({name: name, instructions: instructions});
+    // myMethodObjArgSchema.validate({name: name, instructions: instructions});
     // Make sure the user is logged in before inserting a task
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
