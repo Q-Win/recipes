@@ -1,9 +1,20 @@
 <template name="recipe">
-    <li class="{{#if checked}}checked{{/if}}">
+    <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
       <button class="delete">&times;</button>
 
       <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 
-      <span class="text">{{name}}</span>
+      {{#if isOwner}}
+        <button class="toggle-private">
+          {{#if private}}
+            Private
+          {{else}}
+            Public
+          {{/if}}
+        </button>
+      {{/if}}
+
+      <span class="text"><strong>{{name}}</strong> - by {{username}}</span>
+      <p>{{instructions}}</p>
     </li>
   </template>

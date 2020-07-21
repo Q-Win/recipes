@@ -2,11 +2,23 @@
     <div class="container">
       <header>
         <h1>Recipes</h1>
+        {{> loginButtons}}
       </header>
 
-      <form class="new-recipe">
-        <input type="text" name="recipe" placeholder="Type to add new recipes" />
-      </form>
+      <label class="hide-completed">
+        <input type="checkbox" />
+          Hide Recipes You've Tried
+      </label>
+
+      {{#if currentUser}}
+        <form class="new-recipe">
+          <label >Name:</label>
+          <input type="text" name="recipe" placeholder="Type to add new recipes" onkeypress="if (event.keyCode == 13) {alert('enter'); return false;}" /><br>
+          <label>Instructions:</label>
+          <input type="text" name="instructions" placeholder="Instructions" /><br>
+          <button type="submit">Create Recipe</button>
+        </form>
+       {{/if}}
 
       <ul>
         {{#each recipes}}
