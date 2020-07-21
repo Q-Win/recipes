@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Recipes } from '../api/recipes.js';
+import { Ingredients } from '../api/ingredients.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
 
@@ -11,6 +12,7 @@ import './body.html';
 Template.body.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict();
     Meteor.subscribe('recipes');
+    Meteor.subscribe('ingredients');
   });
 
 Template.body.helpers({

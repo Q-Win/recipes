@@ -9,7 +9,7 @@ Ingredients.attachSchema(new SimpleSchema({
   name: {
     type: String,
     min: 1}
-}
+}))
 
 if (Meteor.isServer) {
     // This code only runs on the server
@@ -18,7 +18,7 @@ if (Meteor.isServer) {
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
-      ],
+      ]
     });
   });
 }
