@@ -12,7 +12,14 @@ Recipes.attachSchema(new SimpleSchema({
     min: 1},
   instructions: {
     type: String,
-    min: 5}},{ tracker: Tracker }))
+    min: 5},
+  owner: {
+    type: String,
+    min: 1},
+  username: {
+    type: String,
+    min: 1}},  
+    { tracker: Tracker }))
 
 
 if (Meteor.isServer) {
