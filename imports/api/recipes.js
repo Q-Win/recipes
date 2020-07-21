@@ -1,25 +1,48 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import SimpleSchema from 'simpl-schema';
+
 
 export const Recipes = new Mongo.Collection('recipes');
 
+
+
 if (Meteor.isServer) {
     // This code only runs on the server
-    Meteor.publish('recipes', function recipesPublication() {
-      return Recipes.find({
-        $or: [
-          { private: { $ne: true } },
-          { owner: this.userId },
-        ],
-      });
+  Meteor.publish('recipes', function recipesPublication() {
+    return Recipes.find({
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId },
+      ],
     });
-  }
+  });
+}
+
+SimpleSchema.defineValidationErrorTransform(error => {
+  const ddpError = new Meteor.Error(error.message);
+  ddpError.error = 'validation-error';
+  ddpError.details = error.details;
+  return ddpError;
+});
+
+const myMethodObjArgSchema = new SimpleSchema({
+  name: {
+    type: String,
+    min: 1},
+  instructions: {
+    type: String,
+    min: 1}
+  },
+  { check }
+);
 
 Meteor.methods({
   'recipes.insert'(name, instructions) {
     check(name, String);
     check(instructions, String)
+    myMethodObjArgSchema.validate({name: name, instructions: instructions});
     // Make sure the user is logged in before inserting a task
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
