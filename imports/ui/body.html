@@ -7,15 +7,8 @@
 
       <h1>Recipes</h1>
       {{#if currentUser}}
-        <form class="new-recipe">
-          <label >Name:</label>
-          <input type="text" name="recipe" placeholder="Type to add new recipes" onkeypress="if (event.keyCode == 13) {alert('enter'); return false;}" /><br>
-          <label>Instructions:</label>
-          <input type="text" name="instructions" placeholder="Instructions" /><br>
-          <button type="submit">Create Recipe</button>
-        </form>
         <div>
-          <!-- {{> insertRecipeForm}} -->
+          {{> insertRecipeForm}}
         </div>
        {{/if}}
        <div>

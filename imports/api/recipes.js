@@ -83,5 +83,11 @@ Meteor.methods({
 
     Recipes.remove(recipeId);
   },
-  
+  'recipes.add-ingredient'(recipeId, ingredientId){
+    const recipe = Recipes.findOne(recipeId);
+    console.log(recipe)
+    Recipes.update(recipeId, { $set: { private: setToPrivate } });
+    // console.log(ingredientId)
+  }
+
 });
