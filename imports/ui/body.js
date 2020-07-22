@@ -48,7 +48,13 @@ Template.body.events({
       target.recipe.value = '';
       target.instructions.value = '';
     },
-    
+    'submit .new-ingredient'(event){
+      event.preventDefault();
+
+      const target = event.target
+      const name = target.ingredient.value
+      
+    },
     'change .hide-completed input'(event, instance) {
       instance.state.set('hideCompleted', event.target.checked);
   },
