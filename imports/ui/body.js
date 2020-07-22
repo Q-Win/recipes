@@ -1,8 +1,10 @@
 import { Template } from 'meteor/templating';
-import { Recipes } from '../api/recipes.js';
+import { Recipes } from '../api/recipes';
 import { Ingredients } from '../api/ingredients.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
+import SimpleSchema from 'simpl-schema';
+SimpleSchema.extendOptions(['autoform']);
 
 
 import './ingredient.js';
