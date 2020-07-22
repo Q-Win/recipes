@@ -53,7 +53,10 @@ Template.body.events({
 
       const target = event.target
       const name = target.ingredient.value
-      
+
+      Meteor.call('ingredients.insert', name);
+
+      target.ingredient.value = '';
     },
     'change .hide-completed input'(event, instance) {
       instance.state.set('hideCompleted', event.target.checked);

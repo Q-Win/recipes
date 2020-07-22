@@ -17,3 +17,13 @@ if (Meteor.isServer) {
        return Ingredients.find();
      });
 }
+
+Meteor.methods({
+  'ingredients.insert'(name, instructions) {
+    check(name, String);
+  
+    Ingredients.insert({
+      name
+    })
+  },
+});
