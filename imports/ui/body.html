@@ -19,12 +19,18 @@
           <button type="submit">Create Recipe</button>
         </form> -->
         <div>
-          {{> insertRecipeForm}}
+          <!-- {{> insertRecipeForm}} -->
         </div>
        {{/if}}
       <ul>
         {{#each recipes}}
           {{> recipe}}
+        {{/each}}
+      </ul>
+
+      <ul>
+        {{#each ingredients}}
+          {{> ingredient}}
         {{/each}}
       </ul>
 

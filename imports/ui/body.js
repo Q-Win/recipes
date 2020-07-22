@@ -5,7 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
 
 
-
+import './ingredient.js';
 import './recipe.js';
 import './body.html';
 
@@ -24,6 +24,9 @@ Template.body.helpers({
       }
       return Recipes.find({}, { sort: { createdAt: -1 } });
     },
+    ingredients() {
+          return Ingredients.find({});
+        },
 });
 
 Template.body.events({

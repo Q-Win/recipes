@@ -9,6 +9,9 @@ Template.recipe.helpers({
     isOwner() {
       return this.owner === Meteor.userId();
     },
+    Recipes(){
+      return Recipes;
+    }
   });
 
 Template.recipe.events({
@@ -23,3 +26,5 @@ Template.recipe.events({
     Meteor.call('recipes.setPrivate', this._id, !this.private);
 },
 });
+
+window.Recipes = Recipes;

@@ -13,12 +13,7 @@ Ingredients.attachSchema(new SimpleSchema({
 
 if (Meteor.isServer) {
     // This code only runs on the server
-  Meteor.publish('ingredients', function ingredientsPublication() {
-    return Ingredients.find({
-      $or: [
-        { private: { $ne: true } },
-        { owner: this.userId },
-      ]
-    });
-  });
+    Meteor.publish('ingredients', function ingredientsPublication() {
+       return Ingredients.find();
+     });
 }

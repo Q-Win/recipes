@@ -6,7 +6,8 @@ SimpleSchema.extendOptions(['autoform']);
 
 
 export const Recipes = new Mongo.Collection('recipes');
-Recipes.attachSchema(new SimpleSchema({
+const Schemas = {};
+Schemas.Recipe = new SimpleSchema({
   name: {
     type: String,
     min: 1},
@@ -19,8 +20,9 @@ Recipes.attachSchema(new SimpleSchema({
   username: {
     type: String,
     min: 1}},
-    { tracker: Tracker }))
+    { tracker: Tracker })
 
+Recipes.attachSchema(Schemas.Recipe)
 
 if (Meteor.isServer) {
     // This code only runs on the server
