@@ -1,15 +1,11 @@
 <body>
     <div class="container">
       <header>
-        <h1>Recipes</h1>
+
         {{> loginButtons}}
       </header>
 
-      <label class="hide-completed">
-        <input type="checkbox" />
-          Hide Recipes You've Tried
-      </label>
-
+      <h1>Recipes</h1>
       {{#if currentUser}}
         <!-- <form class="new-recipe">
           <label >Name:</label>
@@ -30,6 +26,9 @@
         </ul>
       </div>
       <div>
+      <div>
+        <h1> Ingredients </h1>
+      </div>
         <ul>
           {{#each ingredients}}
             {{> ingredient}}

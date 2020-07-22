@@ -15,16 +15,10 @@ Template.recipe.helpers({
   });
 
 Template.recipe.events({
-  'click .toggle-checked'() {
-    // Set the checked property to the opposite of its current value
-    Meteor.call('recipes.setChecked', this._id, !this.checked);
-  },
+  
   'click .delete'() {
      Meteor.call('recipes.remove', this._id);
   },
-  'click .toggle-private'() {
-    Meteor.call('recipes.setPrivate', this._id, !this.private);
-},
 });
 
 window.Recipes = Recipes;

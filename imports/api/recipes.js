@@ -83,19 +83,7 @@ Meteor.methods({
 
     Recipes.remove(recipeId);
   },
-  'recipes.setChecked'(recipeId, setChecked) {
-    check(recipeId, String);
-    check(setChecked, Boolean);
-
-    const recipe = Recipes.findOne(recipeId);
-    if (recipe.private && recipe.owner !== this.userId) {
-      // If the recipe is private, make sure only the owner can check it off
-      throw new Meteor.Error('not-authorized');
-    }
-
-    Recipes.update(recipeId, { $set: { checked: setChecked } });
-  },
-
+  
   'recipes.setPrivate'(recipeId, setToPrivate) {
     check(recipeId, String);
     check(setToPrivate, Boolean);
