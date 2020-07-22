@@ -17,6 +17,7 @@ Template.body.onCreated(function bodyOnCreated() {
     Meteor.subscribe('ingredients');
   });
 
+//These are the methods my templates calls in with the {{}}
 Template.body.helpers({
   recipes() {
       const instance = Template.instance();
