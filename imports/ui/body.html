@@ -22,17 +22,20 @@
           {{> insertRecipeForm}}
         </div>
        {{/if}}
-      <ul>
-        {{#each recipes}}
-          {{> recipe}}
-        {{/each}}
-      </ul>
-
-      <ul>
-        {{#each ingredients}}
-          {{> ingredient}}
-        {{/each}}
-      </ul>
-
+       <div>
+        <ul>
+          {{#each recipes}}
+            {{> recipe}}
+          {{/each}}
+        </ul>
+      </div>
+      <div>
+        <ul>
+          {{#each ingredients}}
+            {{> ingredient}}
+          {{/each}}
+        </ul>
+        {{> createIngredeint}}
+      </div>
     </div>
   </body>
