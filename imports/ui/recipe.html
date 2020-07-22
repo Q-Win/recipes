@@ -1,15 +1,19 @@
-<template name="insertRecipeForm">
-  {{> quickForm collection="recipes" id="insertRecipeForm" type="insert" schema="Recipes"}}
-</template>
 
 
 <template name="recipe">
     <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
       <button class="delete">&times;</button>
-
-    
-
       <span class="text"><strong>{{name}}</strong> - by {{username}}</span>
       <p>{{instructions}}</p>
+      <h3>Add Ingredient to recipe</h3>
+      <form class="add-ingredient-to-recipe">
+        <label for="ingredient">Choose an ingredient:</label>
+        <select id="ingredient" name="ingredient">
+          {{#each ingredients}}
+          <option value={{name}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <input type="submit">
+      </form>
     </li>
   </template>

@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 
 import { Recipes } from '../api/recipes.js';
+import { Ingredients } from '../api/ingredients.js';
 
 import './recipe.html';
 
@@ -11,11 +12,14 @@ Template.recipe.helpers({
     },
     Recipes(){
       return Recipes;
-    }
+    },
+    ingredients() {
+          return Ingredients.find({});
+        },
   });
 
 Template.recipe.events({
-  
+
   'click .delete'() {
      Meteor.call('recipes.remove', this._id);
   },
