@@ -13,13 +13,30 @@ Schemas.Recipe = new SimpleSchema({
     min: 1},
   instructions: {
     type: String,
-    min: 5},
+    min: 5,
+    autoform: {
+      afFieldInput: {
+        type: "textarea",
+        rows: 2,
+        class: "foo"
+      }
+    }
+  },
+
   owner: {
     type: String,
-    min: 1},
+    min: 1,
+    autoform: {
+      type: "hidden"
+    }
+  },
   username: {
     type: String,
-    min: 1}},
+    min: 1,
+    autoform: {
+      type: "hidden"
+    }
+  }},
     { tracker: Tracker })
 
 Recipes.attachSchema(Schemas.Recipe)
