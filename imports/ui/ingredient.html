@@ -7,9 +7,10 @@
 
 <template name ="createIngredeint">
   <h1>Add an ingredient</h1>
-  <form class="new-ingredient">
+  {{> quickForm collection="Ingredients" id="insertIngredientForm" type="method" meteormethod="ingredients.insert"}}
+  <!-- <form class="new-ingredient">
     <label >Name:</label>
     <input type="text" name="ingredient" placeholder="Type to add new ingredient" onkeypress="if (event.keyCode == 13) {alert('enter'); return false;}" /><br>
     <button type="submit">Create Ingredient</button>
-  </form>
+  </form> -->
 </template>

@@ -8,5 +8,7 @@ import './ingredient.html';
 
 
 Template.ingredient.events({
-  
+
 });
+
+window.Ingredients = Ingredients;

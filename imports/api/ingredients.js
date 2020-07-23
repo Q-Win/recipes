@@ -19,9 +19,10 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'ingredients.insert'(name, instructions) {
+  'ingredients.insert'(doc) {
+    name = doc.name
     check(name, String);
-  
+
     Ingredients.insert({
       name
     })
