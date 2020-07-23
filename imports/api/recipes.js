@@ -22,7 +22,6 @@ Schemas.Recipe = new SimpleSchema({
       }
     }
   },
-
   owner: {
     type: String,
     min: 1,
@@ -104,7 +103,6 @@ Meteor.methods({
     const recipe = Recipes.findOne(recipeId);
     console.log(recipe)
     Recipes.update(recipeId, { $set: { private: setToPrivate } });
-    // console.log(ingredientId)
   }
 
 });
