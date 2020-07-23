@@ -33,33 +33,33 @@ Template.body.helpers({
 });
 
 Template.body.events({
-    'submit .new-recipe'(event) {
-      // Prevent default browser form submit
-      event.preventDefault();
+  'submit .new-recipe'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
 
-      // Get value from form element
-      const target = event.target;
-      const name = target.recipe.value;
-      const instructions = target.instructions.value
+    // Get value from form element
+    const target = event.target;
+    const name = target.recipe.value;
+    const instructions = target.instructions.value
 
-      // Insert a task into the collection
-       Meteor.call('recipes.insert', name, instructions);
+    // Insert a task into the collection
+     Meteor.call('recipes.insert', name, instructions);
 
-      // Clear form
-      target.recipe.value = '';
-      target.instructions.value = '';
-    },
-    'submit .new-ingredient'(event){
-      event.preventDefault();
+    // Clear form
+    target.recipe.value = '';
+    target.instructions.value = '';
+  },
+  'submit .new-ingredient'(event){
+    event.preventDefault();
 
-      const target = event.target
-      const name = target.ingredient.value
+    const target = event.target
+    const name = target.ingredient.value
 
-      Meteor.call('ingredients.insert', name);
+    Meteor.call('ingredients.insert', name);
 
-      target.ingredient.value = '';
-    },
-    'change .hide-completed input'(event, instance) {
-      instance.state.set('hideCompleted', event.target.checked);
+    target.ingredient.value = '';
+  },
+  'change .hide-completed input'(event, instance) {
+    instance.state.set('hideCompleted', event.target.checked);
   },
 });

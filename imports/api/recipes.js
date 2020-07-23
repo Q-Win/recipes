@@ -27,14 +27,16 @@ Schemas.Recipe = new SimpleSchema({
     min: 1,
     autoform: {
       type: "hidden"
-    }
+    },
+    optional: true
   },
   username: {
     type: String,
     min: 1,
     autoform: {
       type: "hidden"
-    }
+    },
+    optional: true
   }},
     { tracker: Tracker })
 
@@ -71,7 +73,8 @@ if (Meteor.isServer) {
 // );
 
 Meteor.methods({
-  'recipes.insert'(name, instructions) {
+  'recipes.insert'(doc) {
+    const { name, instructions } = doc
     check(name, String);
     check(instructions, String)
     // myMethodObjArgSchema.validate({name: name, instructions: instructions});
@@ -100,9 +103,10 @@ Meteor.methods({
     Recipes.remove(recipeId);
   },
   'recipes.add-ingredient'(recipeId, ingredientId){
+
     const recipe = Recipes.findOne(recipeId);
-    console.log(recipe)
-    Recipes.update(recipeId, { $set: { private: setToPrivate } });
+    console.log(recipe.name)
+    // Recipes.update(recipeId, { $set: { private: setToPrivate } });
   }
 
 });
