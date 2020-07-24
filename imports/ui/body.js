@@ -21,9 +21,9 @@ Template.body.onCreated(function bodyOnCreated() {
 Template.body.helpers({
   recipes() {
       const instance = Template.instance();
-      if (instance.state.get('hideCompleted')) {
+      if (instance.state.get('showMyRecipes')) {
         // If hide completed is checked, filter tasks
-        return Recipes.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
+        return Recipes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
       }
       return Recipes.find({}, { sort: { createdAt: -1 } });
     },
@@ -59,7 +59,7 @@ Template.body.events({
 
     target.ingredient.value = '';
   },
-  'change .hide-completed input'(event, instance) {
-    instance.state.set('hideCompleted', event.target.checked);
+  'change .show-my-recipes'(event, instance) {
+    instance.state.set('showMyRecipes', event.target.checked);
   },
 });
