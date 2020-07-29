@@ -23,12 +23,17 @@ Template.body.helpers({
   recipes() {
       const instance = Template.instance();
       if (instance.state.get('showMyRecipes')) {
-        // return Recipes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
-        const query = Recipes.createQuery({
-           owner: Meteor.userId()
-        });
-        return query.fetch();
+        return Recipes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
+        // const query = Recipes.createQuery({
+        //   $filters: {
+        //        owner: Meteor.userId(),
+        //    },
+        //    name: 1,
+        //    instructions: 1,
+        // });
+        // return query.fetch();
       }
+      // Meteor.call('recipes.get-recipes')
       return Recipes.find({}, { sort: { createdAt: -1 } });
     },
     ingredients() {

@@ -9,12 +9,15 @@
       <form class="add-ingredient-to-recipe">
         <label for="ingredient">Choose an ingredient:</label>
         <select id="ingredient" name="ingredient">
-          {{#each ingredients}}
+          {{#each allIngredients}}
           <option value={{name}}>{{name}}</option>
           {{/each}}
         </select>
         <input type="submit">
       </form>
+      <br>
+
+      <p>Ingredients for this recipe: {{ingredientIds}}</p>
     </li>
   </template>
 

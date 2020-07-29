@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Recipes } from '../api/recipes.js';
 import { Ingredients } from '../api/ingredients.js';
+import { createQuery } from 'meteor/cultofcoders:grapher'
 
 import './recipe.html';
 
@@ -10,15 +11,10 @@ Template.recipe.helpers({
     isOwner() {
       return this.owner === Meteor.userId();
     },
-    Recipes(){
-      return Recipes;
-    },
-    ingredients() {
+  
+    allIngredients() {
           return Ingredients.find({});
         },
-    recipeIngredients(){
-      
-    }
   });
 
 Template.recipe.events({
