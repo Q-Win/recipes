@@ -16,6 +16,9 @@ Template.recipe.helpers({
     ingredients() {
           return Ingredients.find({});
         },
+    recipeIngredients(){
+      
+    }
   });
 
 Template.recipe.events({

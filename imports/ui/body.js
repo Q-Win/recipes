@@ -5,6 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 SimpleSchema.extendOptions(['autoform']);
+import { createQuery } from 'meteor/cultofcoders:grapher'
 
 
 import './ingredient.js';
@@ -22,8 +23,11 @@ Template.body.helpers({
   recipes() {
       const instance = Template.instance();
       if (instance.state.get('showMyRecipes')) {
-        // If hide completed is checked, filter tasks
-        return Recipes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
+        // return Recipes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
+        const query = Recipes.createQuery({
+           owner: Meteor.userId()
+        });
+        return query.fetch();
       }
       return Recipes.find({}, { sort: { createdAt: -1 } });
     },

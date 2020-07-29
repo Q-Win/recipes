@@ -37,7 +37,20 @@ Schemas.Recipe = new SimpleSchema({
       type: "hidden"
     },
     optional: true
-  }},
+  },
+  ingredientIds: {
+    type: Array,
+    autoform: {
+      type: "hidden"
+    },
+    optional: true
+    },
+
+    "ingredientIds.$": {
+    type: String
+    },
+
+  },
     { tracker: Tracker })
 
 Recipes.attachSchema(Schemas.Recipe)
@@ -46,31 +59,10 @@ if (Meteor.isServer) {
     // This code only runs on the server
   Meteor.publish('recipes', function recipesPublication() {
     return Recipes.find({
-      $or: [
-        { private: { $ne: true } },
-        { owner: this.userId },
-      ],
     });
   });
 }
 
-// SimpleSchema.defineValidationErrorTransform(error => {
-//   const ddpError = new Meteor.Error(error.message);
-//   ddpError.error = 'validation-error';
-//   ddpError.details = error.details;
-//   return ddpError;
-// });
-
-// const myMethodObjArgSchema = new SimpleSchema({
-//   name: {
-//     type: String,
-//     min: 1},
-//   instructions: {
-//     type: String,
-//     min: 1}
-//   },
-//   { check }
-// );
 
 Meteor.methods({
   'recipes.insert'(doc) {
@@ -103,10 +95,15 @@ Meteor.methods({
     Recipes.remove(recipeId);
   },
   'recipes.add-ingredient'(recipeId, ingredientId){
-
-    const recipe = Recipes.findOne(recipeId);
-    console.log(recipe.name)
+    _id = recipeId
+    modifier = {
+        $addToSet: {
+            ingredientIds: ingredientId
+        }
+    }
+    Recipes.update(_id, modifier)
     // Recipes.update(recipeId, { $set: { private: setToPrivate } });
-  }
+  },
+
 
 });
