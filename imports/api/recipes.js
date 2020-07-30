@@ -102,7 +102,6 @@ Meteor.methods({
         }
     }
     Recipes.update(_id, modifier)
-    // Recipes.update(recipeId, { $set: { private: setToPrivate } });
   },
-  
+
 });
