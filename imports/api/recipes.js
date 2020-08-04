@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
 SimpleSchema.extendOptions(['autoform']);
+import { createQuery } from 'meteor/cultofcoders:grapher'
 
 
 export const Recipes = new Mongo.Collection('recipes');
@@ -60,6 +61,18 @@ if (Meteor.isServer) {
   Meteor.publish('recipes', function recipesPublication() {
     return Recipes.find({
     });
+  });
+
+  Meteor.publish('user.recipes', function userRecipesPublication(userId) {
+      const query = Recipes.createQuery({
+        $filters: {
+             owner: userId,
+         },
+         name: 1,
+         instructions: 1,
+      });
+      console.log("t")
+      return query.fetch();
   });
 }
 

@@ -5,12 +5,13 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 SimpleSchema.extendOptions(['autoform']);
-import { createQuery } from 'meteor/cultofcoders:grapher'
+
 
 
 import './ingredient.js';
 import './recipe.js';
 import './body.html';
+import '../db/recipe/query'
 
 Template.body.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict();
@@ -23,15 +24,7 @@ Template.body.helpers({
   recipes() {
       const instance = Template.instance();
       if (instance.state.get('showMyRecipes')) {
-        // return Recipes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
-        const query = Recipes.createQuery({
-          $filters: {
-               owner: Meteor.userId(),
-           },
-           name: 1,
-           instructions: 1,
-        });
-        return query.fetch();
+        return Recipes.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
       }
       return Recipes.find({}, { sort: { createdAt: -1 } });
     },
